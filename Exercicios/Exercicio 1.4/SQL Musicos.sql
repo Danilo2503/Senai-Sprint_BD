@@ -1,0 +1,41 @@
+CREATE DATABASE Musicos;
+
+USE Musicos;
+
+CREATE TABLE Artistas
+(
+	idArtista		INT PRIMARY KEY IDENTITY
+	,NomeArtista	VARCHAR(300) NOT NULL
+);
+
+CREATE TABLE Albuns
+(
+	idAlbum			INT PRIMARY KEY IDENTITY
+	,idArtista		INT FOREIGN KEY REFERENCES Artistas (idArtista)
+	,Titulo			VARCHAR(400) NOT NULL
+	,DataLanca		VARCHAR(300) NOT NULL
+	,Localizacao	VARCHAR(250) NOT NULL
+	,QtdMinutos		VARCHAR(700) NOT NULL
+	,Ativo			VARCHAR(550) NOT NULL
+);
+
+CREATE TABLE Estilos
+(
+	idEstilo		INT PRIMARY KEY IDENTITY
+	,NomeAlbum		VARCHAR(300) NOT NULL
+);
+
+CREATE TABLE AlbunsEstilos
+(
+	idAlbum			INT FOREIGN KEY REFERENCES Albuns (idAlbum)
+	,idEstilo		INT FOREIGN KEY REFERENCES Estilos (idEstilo)
+);
+
+CREATE TABLE Usuarios
+(
+	idUsuario		INT PRIMARY KEY IDENTITY
+	,NomeUser		VARCHAR(300) NOT NULL
+	,Email			VARCHAR(400) NOT NULL
+	,Senha			VARCHAR(250) NOT NULL
+	,Permissao		VARCHAR(107) NOT NULL
+);

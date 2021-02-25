@@ -1,0 +1,48 @@
+CREATE DATABASE Empresas;
+
+USE Empresas;
+
+CREATE TABLE Empresas
+(
+	idEmpresa		INT PRIMARY KEY IDENTITY
+	,Nome			VARCHAR(400) NOT NULL
+);
+
+CREATE TABLE Marcas
+(
+	idMarca			INT PRIMARY KEY IDENTITY
+	,NomeMarca		VARCHAR(400) NOT NULL
+);
+
+CREATE TABLE Clientes
+(
+	idCliente		INT PRIMARY KEY IDENTITY
+	,NomeCliente	VARCHAR(450) NOT NULL
+	,CPF			VARCHAR(450) NOT NULL
+);
+
+CREATE TABLE Modelos
+(
+	idModelo		INT PRIMARY KEY IDENTITY
+	,idMarca		INT FOREIGN KEY REFERENCES Marcas (idMarca)
+	,Descricao		VARCHAR(400) NOT NULL
+);
+
+CREATE TABLE Alugueis
+(
+	idAluguel		INT PRIMARY KEY IDENTITY
+	,idCliente		INT FOREIGN KEY REFERENCES Clientes (idCliente)
+	,idVeiculo		INT FOREIGN KEY REFERENCES Veiculos (idVeiculo)
+	,DataInicio		VARCHAR(300) NOT NULL
+	,DataFim		VARCHAR(300) NOT NULL
+);
+
+CREATE TABLE Veiculos
+(
+	idVeiculo		INT PRIMARY KEY IDENTITY
+	,idEmpresa		INT FOREIGN KEY REFERENCES Empresas (idEmpresa)
+	,idMarca		INT FOREIGN KEY REFERENCES Marcas (idMarca)
+	,idAluguel		INT FOREIGN KEY REFERENCES Alugueis (idAluguel)
+	,Placa			VARCHAR(400) NOT NULL
+);
+
