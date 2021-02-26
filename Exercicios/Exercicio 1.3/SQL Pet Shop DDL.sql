@@ -1,0 +1,54 @@
+CREATE DATABASE PetShop;
+
+USE PetShop;
+
+CREATE TABLE Donos 
+(
+	idDono		INT PRIMARY KEY IDENTITY
+	,Nome		VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE TiposDePet
+(
+	idTipo		INT PRIMARY KEY IDENTITY
+	,Tipo		VARCHAR(230) NOT NULL
+);
+
+CREATE TABLE Racas
+(
+	idRaca		INT PRIMARY KEY IDENTITY
+	,idTipo		INT FOREIGN KEY REFERENCES TiposDePet (idTipo)
+	,Raca		VARCHAR(150)
+);
+
+CREATE TABLE Pets
+(
+	idPet				INT PRIMARY KEY IDENTITY
+	,idDono				INT FOREIGN KEY REFERENCES Donos (idDono)
+	,idRaca				INT FOREIGN KEY REFERENCES Racas (idRaca)
+	,Nome				VARCHAR(150) NOT NULL,
+	DataDeNascimento	DATE NOT NULL
+);
+
+CREATE TABLE Clinicas
+(
+	idClinica		INT PRIMARY KEY IDENTITY
+	,Nome			VARCHAR(300) NOT NULL
+	,Endereco		VARCHAR(400) NOT NULL
+);
+
+CREATE TABLE Veterinarios
+(
+	idVeterinario		INT PRIMARY KEY IDENTITY
+	,Nome				VARCHAR(300) NOT NULL
+);
+
+CREATE TABLE Consultas
+(
+	idConsulta			INT PRIMARY KEY IDENTITY
+	,idClinica			INT FOREIGN KEY REFERENCES Clinicas (IdClinica)
+	,idVeterinario		INT FOREIGN KEY REFERENCES Veterinarios (IdVeterinario)
+	,idPet				INT FOREIGN KEY REFERENCES Pets (IdPet)
+	,Valor				MONEY NOT NULL
+	,DataDaConsulta		DATE NOT NULL
+);
