@@ -26,6 +26,7 @@ CREATE TABLE Personagem
 (
 	IdPersonagem			INT PRIMARY KEY IDENTITY
 	,IdClasse				INT FOREIGN KEY REFERENCES Classe (IdClasse)
+	,NomePersonagem			VARCHAR(200) NOT NULL
 	,NomeClasse				VARCHAR(200) NOT NULL
 	,VidaMáxima				VARCHAR(100) NOT NULL
 	,ManaMáxima				VARCHAR(80) NOT NULL
