@@ -22,12 +22,18 @@ CREATE TABLE Classe
 	,NomeClasse				VARCHAR(200) NOT NULL
 );
 
+CREATE TABLE ClasseHabilidade
+(
+	 IdClasseHabilidade		INT PRIMARY KEY IDENTITY
+	,IdHabilidade			INT FOREIGN KEY REFERENCES Habilidade (IdHabilidade)
+	,IdClasse				INT FOREIGN KEY REFERENCES Classe (IdClasse)
+);
+
 CREATE TABLE Personagem
 (
 	IdPersonagem			INT PRIMARY KEY IDENTITY
-	,IdClasse				INT FOREIGN KEY REFERENCES Classe (IdClasse)
 	,NomePersonagem			VARCHAR(200) NOT NULL
-	,NomeClasse				VARCHAR(200) NOT NULL
+	,IdClasse				INT FOREIGN KEY REFERENCES Classe (IdClasse)
 	,VidaMáxima				VARCHAR(100) NOT NULL
 	,ManaMáxima				VARCHAR(80) NOT NULL
 	,DataAtualizacao		DATE
